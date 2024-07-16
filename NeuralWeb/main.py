@@ -55,7 +55,7 @@ base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Verificando se as pastas Models/json e Models/models h5 existem, senão cria
 json_dir = os.path.join(base_path, 'Models', 'json')
-models_h5_dir = os.path.join(base_path, 'Models', 'models h5')
+models_h5_dir = os.path.join(base_path, 'Models', 'models_h5')
 
 if not os.path.exists(json_dir):
     os.makedirs(json_dir)
