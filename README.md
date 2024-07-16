@@ -29,15 +29,9 @@ This repository contains models and code for car recognition using neural networ
    ```
    python main.py
    ```
-
-## Contribution
-
-Contributions are welcome! Feel free to send pull requests for improvements, bug fixes, or new models.
-
+   
 ## License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
 ---
-
-Feel free to customize and expand upon this template with more specific details about training new models, usage examples, etc.
