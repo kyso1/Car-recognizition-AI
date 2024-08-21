@@ -2,3 +2,5 @@ keras
 numpy
 tensorflow
 fastapi
+matplotlib
+scikit-learn
