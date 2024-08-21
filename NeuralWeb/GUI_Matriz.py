@@ -5,10 +5,27 @@ from sklearn.metrics import confusion_matrix, classification_report
 import matplotlib.pyplot as plt
 import seaborn as sns
 from tensorflow.keras.preprocessing.image import ImageDataGenerator # type: ignore
+from tensorflow.keras.models import load_model # type: ignore
 
-# Carregar o modelo salvo
-model_path = os.path.join('Models', 'models h5', 'history_model_20240821_165700.h5')  # Substitua pelo nome do seu modelo salvo
-model = tf.keras.models.load_model(model_path)
+models_dir = os.path.join('Models', 'models_h5')
+
+# Lista todos os arquivos na pasta
+model_files = [f for f in os.listdir(models_dir) if f.endswith('.h5')]
+
+# Verifica se há algum modelo salvo
+if not model_files:
+    raise FileNotFoundError("Nenhum modelo encontrado na pasta.")
+
+# Ordena os arquivos pelo tempo de modificação (do mais recente para o mais antigo)
+model_files.sort(key=lambda x: os.path.getmtime(os.path.join(models_dir, x)), reverse=True)
+
+# Caminho do último modelo salvo
+latest_model_path = os.path.join(models_dir, model_files[0])
+
+# Carrega o último modelo
+model = load_model(latest_model_path)
+
+print(f"Modelo carregado: {model_files[0]}")
 
 # Classes do modelo
 class_names = ['Audi', 'HyundaiCreta', 'MahindraScorpio', 'RollsRoyce', 'Swift', 'TataSafari', 'ToyotaInnova']
