@@ -4,3 +4,4 @@ tensorflow
 fastapi
 matplotlib
 scikit-learn
+seaborn
