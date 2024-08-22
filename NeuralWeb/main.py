@@ -17,7 +17,7 @@ sys.stderr.reconfigure(encoding='utf-8')
 datagen = ImageDataGenerator(rescale=1./255, validation_split=0.2)
 
 train_generator = datagen.flow_from_directory(
-    'C:/Users/gian1/OneDrive/Documentos/Facul/TrabalhosIA/Car-recognizition-AI/DataSet/train',  # alterar quando for pro note
+    'E:/DEV-STUFF/PythonProjects/Car-recognizition-AI/DataSet/train',  # alterar quando for pro note
     target_size=(150, 150),
     batch_size=32,
     class_mode='categorical',
@@ -25,7 +25,7 @@ train_generator = datagen.flow_from_directory(
 )
 
 validation_generator = datagen.flow_from_directory(
-    'C:/Users/gian1/OneDrive/Documentos/Facul/TrabalhosIA/Car-recognizition-AI/DataSet/test',  # alterar quando for pro note
+    'E:/DEV-STUFF/PythonProjects/Car-recognizition-AI/DataSet/test',  # alterar quando for pro note
     target_size=(150, 150),
     batch_size=32,
     class_mode='categorical',
@@ -59,7 +59,7 @@ base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Verificando se as pastas Models/json e Models/models h5 existem, senão cria
 json_dir = os.path.join(base_path, 'Models', 'json')
-models_h5_dir = os.path.join(base_path, 'Models', 'models h5')
+models_h5_dir = os.path.join(base_path, 'Models', 'models_h5')
 
 if not os.path.exists(json_dir):
     os.makedirs(json_dir)
