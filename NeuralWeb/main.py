@@ -16,21 +16,32 @@ sys.stderr.reconfigure(encoding='utf-8')
 # Carrega e pre-processa as imagens
 datagen = ImageDataGenerator(rescale=1./255, validation_split=0.2)
 
+# Definindo o caminho base para a pasta DataSet
+base_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'DataSet')
+
+# Caminhos para os subdiretórios de treinamento e validação
+train_dir = os.path.join(base_dir, 'train')
+test_dir = os.path.join(base_dir, 'test')
+
+# Criando o ImageDataGenerator
+datagen = ImageDataGenerator(validation_split=0.2)
+
+# Configurando o gerador de dados para treinamento
 train_generator = datagen.flow_from_directory(
-    'E:/DEV-STUFF/PythonProjects/Car-recognizition-AI/DataSet/train',  # alterar quando for pro note
+    train_dir,
     target_size=(150, 150),
     batch_size=32,
     class_mode='categorical',
     subset='training'
 )
 
+# Configurando o gerador de dados para validação
 validation_generator = datagen.flow_from_directory(
-    'E:/DEV-STUFF/PythonProjects/Car-recognizition-AI/DataSet/test',  # alterar quando for pro note
+    test_dir,
     target_size=(150, 150),
     batch_size=32,
     class_mode='categorical',
     subset='validation',
-    shuffle=False  # Importante para garantir que y_true corresponda a y_pred
 )
 
 # Constroi o modelo
@@ -43,6 +54,7 @@ model = Sequential([
     MaxPooling2D(2, 2),
     Conv2D(256, (3,3), activation='relu'),
     MaxPooling2D(2,2),
+    Conv2D(512, (3,3), activation='relu'),
     Flatten(),
     Dense(512, activation='relu'),
     Dense(7, activation='softmax')  # Seta a quantidade de classes 
